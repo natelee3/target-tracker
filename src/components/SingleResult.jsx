@@ -47,7 +47,7 @@ const SingleResult = (props) => {
                     <Col xs={6}>
                         <Card.Body className="align-left">
                             <Card.Title>
-                                <a href={url} target='_blank'>
+                                <a href={url} target='_blank' rel="noreferrer">
                                     <b>{name}</b>
                                 </a>
                             </Card.Title>
