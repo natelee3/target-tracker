@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {data} from '../data';
 import './Dashboard.css';
+import SingleResult from './SingleResult';
 
 const Dashboard = () => {
     const [listings, setListings] = useState(data)
@@ -20,12 +21,17 @@ const Dashboard = () => {
     
     
     return (
-        <>
+        <div className="content">
             <h1>Target Tracker</h1>
-            {data.map(entry => (
-                <h2>{entry.company_info.name}</h2>
-            ))}
-        </>
+                <div className="card-container">
+                    {data.map(entry => (
+                        <SingleResult 
+                            listing={entry}
+                            delete={_deleteEntry}
+                        />
+                    ))}
+                </div>
+        </div>
     );
 }
 
