@@ -14,7 +14,7 @@ const SingleResult = (props) => {
     const handleOpen = () => setShow(true);
 
     const deleteAndClose = () => {
-        // props.deleteJob(id);
+        props.delete(id);
         handleClose();
     };
     

@@ -2,17 +2,22 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Details from './components/Details';
 import Navigation from './components/Navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {data} from './data';
 import './components/Dashboard.css';
 import SingleResult from './components/SingleResult';
 
 function App() {
-  const [listings, setListings] = useState(data);
+  const [listings, setListings] = useState(null);
+  const [fetchedData, setFetchedData] = useState(data);
+
+  useEffect(() => {
+    setListings(fetchedData);
+  })
 
   const _deleteEntry = (id) => {
-      //TODO: remove entry from listings
-      setListings(listings.filter(listing => listing.id !== id));
+      console.log('deleteEntry is being run')
+      setFetchedData(fetchedData.filter(listing => listing.id !== id));
   };
 
   const _addEntry = () => {
@@ -33,7 +38,7 @@ function App() {
             <div className="content">
               <h1>Target Tracker</h1>
               <div className="card-container">
-                  {data.map(entry => (
+                  {fetchedData.map(entry => (
                       <SingleResult
                           key={entry.id} 
                           listing={entry}
