@@ -24,12 +24,13 @@ const EditTargetModal = ({listing, isVisible, handleModalClick, updateEntry}) =>
         }
     },[listing])
     const handleChange = (e) => {
-        setFormData(...formData, {[e.target.id]: e.target.value });
+        setFormData({...formData, [e.target.id]: e.target.value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        updateEntry(listing.id, formData.status);
+        handleModalClick();
     };
 
     return (

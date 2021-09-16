@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Details from './components/Details';
-import Navigation from './components/Navigation';
 import { useState, useEffect } from 'react';
 import {data} from './data';
 import './components/Dashboard.css';
@@ -80,8 +79,12 @@ function App() {
     setNextId(nextId + 1);
   };
 
-  const _updateEntry = (id, status, notes) => {
-      //TODO: allow users to add notes, update status
+  const _updateEntry = (id, status) => {
+      //TODO: allow users to add notes
+      setFetchedData(
+        [...fetchedData.map(el => el.id === id ? 
+          {...el, 'status': status} : el )
+        ])
   };
 
 

@@ -1,6 +1,6 @@
 import { useParams, useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react'; 
-import { Card, Col, Button } from 'react-bootstrap';
+import { Button, Card, Col } from 'react-bootstrap';
 import EditTargetModal from './EditTargetModal';
 import ReactImageFallback from 'react-image-fallback';
 import './Details.css';

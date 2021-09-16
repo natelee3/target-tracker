@@ -1,10 +1,8 @@
-import Modal from 'react-bootstrap/Modal';
 import ReactImageFallback from 'react-image-fallback';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col'
+import { Button, Card, Col, Modal } from 'react-bootstrap';
+
 
 const SingleResult = (props) => {
     const { id, status, company_info } = props.listing;
@@ -44,7 +42,7 @@ const SingleResult = (props) => {
                             />
                         </div>
                     </Col>
-                    <Col xs={6}>
+                    <Col xs={4}>
                         <Card.Body className="align-left">
                             <Card.Title>
                                 <a href={url} target='_blank' rel="noreferrer">
@@ -56,7 +54,7 @@ const SingleResult = (props) => {
                             </Card.Text>
                         </Card.Body>
                     </Col>
-                    <Col xs={3} className="d-flex align-self-center justify-content-center">
+                    <Col xs={4} className="d-flex align-self-center justify-content-center">
                         <Link to={`/${id}`}>
                                 <Button variant="primary">Details</Button>
                         </Link>
