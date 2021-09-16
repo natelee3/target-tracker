@@ -40,23 +40,13 @@ const Details = (props) => {
                             <Col xs={9}>
                                 <Card.Body className="align-left">
                                     <Card.Text>
-                                        <p>
-                                            <b>Sector: </b>{listing.company_info.sector}
-                                        </p>
-                                        <p>
-                                            <b>HQ Location: </b>{ !!listing.company_info.geo.city ? 
-                                            `${listing.company_info.geo.city}, ${listing.company_info.geo.stateCode}`
-                                            : null}
-                                        </p>
-                                        <p>
-                                            <b>Employees: </b>{listing.metrics.employees}
-                                        </p>
-                                        <p>
-                                            <b>Market Cap: </b>{listing.metrics.marketCap}
-                                        </p>
-                                        <p>
-                                            <b>Annual Revenue: </b>{listing.metrics.annualRevenue}
-                                        </p>
+                                        <b>Sector: </b>{listing.company_info.sector}<br/>
+                                        <b>HQ Location: </b>{ !!listing.company_info.geo.city ? 
+                                        `${listing.company_info.geo.city}, ${listing.company_info.geo.stateCode}`
+                                        : null}<br/>
+                                        <b>Employees: </b>{listing.metrics.employees}<br/>
+                                        <b>Market Cap: </b>{listing.metrics.marketCap}<br/>
+                                        <b>Annual Revenue: </b>{listing.metrics.annualRevenue}<br/>
                                     </Card.Text>
                                 </Card.Body>
                             </Col>

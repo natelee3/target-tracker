@@ -52,7 +52,7 @@ const SingleResult = (props) => {
                                 </a>
                             </Card.Title>
                             <Card.Text>
-                                <p>{status}</p>
+                                {status}
                             </Card.Text>
                         </Card.Body>
                     </Col>
