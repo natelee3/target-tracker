@@ -4,7 +4,7 @@ export const data =
 
 [
     {
-        "id": 1,
+        "id": 0,
         "status": "researching",
         "key_contacts" : [
             "", ""
@@ -29,7 +29,7 @@ export const data =
         }
     },
     {
-        "id": 2,
+        "id": 1,
         "status": "researching/pending/approved/declined",
         "key_contacts" : [
             "", ""

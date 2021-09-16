@@ -2,15 +2,35 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { capitalize } from '../utilities';
 
-const AddTargetModal = ({isVisible, handleModalClick, addEntry}) => {
+const AddTargetModal = ({isVisible, handleModalClick, addEntry }) => {
     const [companyName, setCompanyName] = useState('');
     const [companyDomain, setCompanyDomain] = useState('');
+    // const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (e) => {
+    const fetchBigPicture = async (domain) => {
+        const url = `https://company.bigpicture.io/v1/companies/find?domain=${domain}`;
+        const key = '183O0bwbmc1NUewM4O6aie:4kQGZqHMv8UTdZPCNd2qpe';
+        const requestOptions = {
+            headers: {'Authorization': key}    
+        };
+        const response = await fetch(url, requestOptions)
+            .then(response => response.json())
+        return response;
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const name = capitalize(companyName);
-        addEntry(name, 'www.target.com');
+        //validate domain name
+        const response = await fetchBigPicture('target.com');
+        if (!!response.geo) {
+            addEntry(name, companyDomain, response)
+        } else {
+            addEntry(name, companyDomain, null);
+        }
         handleModalClick();
+        
+      
     };
 
     const handleChange = (e) => {
@@ -42,7 +62,7 @@ const AddTargetModal = ({isVisible, handleModalClick, addEntry}) => {
                         <Modal.Title>Add New Target</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form>
+                        <Form onSubmit={handleSubmit}>
                             <Form.Group className="mb-3" controlId="companyName">
                                 <Form.Label>Company Name</Form.Label>
                                 <Form.Control 
@@ -63,7 +83,7 @@ const AddTargetModal = ({isVisible, handleModalClick, addEntry}) => {
                             <Button 
                                 variant="primary" 
                                 type="submit"
-                                onClick={handleSubmit}>
+                            >
                                 Submit
                             </Button>
                         </Form>

@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import {data} from './data';
 import './components/Dashboard.css';
 import SingleResult from './components/SingleResult';
-import Modal from "./components/addTargetModal";
+import Modal from "./components/AddTargetModal";
 
 function App() {
   const [listings, setListings] = useState(null);
@@ -16,6 +16,7 @@ function App() {
   const handleModalClick = () => setIsVisible(!isVisible);
 
   useEffect(() => {
+    //With a backend, this would be fetching from the database and updating the page
     setListings(fetchedData);
   },[fetchedData]);
 
@@ -24,17 +25,18 @@ function App() {
       setFetchedData(fetchedData.filter(listing => listing.id !== id));
   };
 
-  const _addEntry = (lookup_name, lookup_domain) => {
-      //TODO: add new entry to listings by running a fetch and setting all the information into state.
-    console.log('Entry being added');
+  const _addEntry = (lookup_name, lookup_domain, response) => {
+    if (!!response) {
+      const {id, url, key_contacts, metrics} = response;
+    };
     setFetchedData([...fetchedData, {
       id: nextId,
       status: 'researching',
-      key_contacts: '',
+      key_contacts: key_contacts || '',
       company_info: {
-        name: lookup_name,
-        url: lookup_domain,
-        logo: '',
+        name: response.name || lookup_name,
+        url: url || 'https://' + lookup_domain,
+        logo: logo || '',
         sector: '',
         description: '',
         geo: {
@@ -53,7 +55,6 @@ function App() {
     console.log(fetchedData);
     setNextId(nextId + 1);
   };
-
 
   const _updateEntry = (id, status, notes) => {
       //TODO: allow users to add notes, update status
@@ -81,7 +82,8 @@ function App() {
               <Modal 
                 isVisible={isVisible}
                 handleModalClick={handleModalClick}
-                addEntry={_addEntry}/>
+                addEntry={_addEntry}
+              />
             </div>
           </Route>
           <Route path={'/:listingId'}>
