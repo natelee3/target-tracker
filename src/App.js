@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import {data} from './data';
 import './components/Dashboard.css';
 import SingleResult from './components/SingleResult';
-import AddTargetModal from "./components/AddTargetModal";
+import AddTargetModal from './components/AddTargetModal';
 
 function App() {
   const [listings, setListings] = useState(null);
