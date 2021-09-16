@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import {data} from './data';
 import './components/Dashboard.css';
 import SingleResult from './components/SingleResult';
-import Modal from "./components/AddTargetModal";
+import AddTargetModal from "./components/AddTargetModal";
 
 function App() {
   const [listings, setListings] = useState(null);
@@ -106,7 +106,7 @@ function App() {
                   ))
                 : null}
               </div>
-              <Modal 
+              <AddTargetModal 
                 isVisible={isVisible}
                 handleModalClick={handleModalClick}
                 addEntry={_addEntry}
