@@ -1,6 +1,7 @@
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { capitalize } from '../utilities';
+import env from 'react-dotenv';
 
 const AddTargetModal = ({isVisible, handleModalClick, addEntry }) => {
     const [companyName, setCompanyName] = useState('');
@@ -9,7 +10,7 @@ const AddTargetModal = ({isVisible, handleModalClick, addEntry }) => {
 
     const fetchBigPicture = async (domain) => {
         const url = `https://company.bigpicture.io/v1/companies/find?domain=${domain}`;
-        const key = window.env.API_KEY;
+        const key = env.API_KEY;
         const requestOptions = {
             headers: {'Authorization': key}    
         };
