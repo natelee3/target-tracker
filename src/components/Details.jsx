@@ -1,22 +1,26 @@
 import { useParams, useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react'; 
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
+import { Card, Col, Button } from 'react-bootstrap';
+import EditTargetModal from './EditTargetModal';
 import ReactImageFallback from 'react-image-fallback';
 import './Details.css';
 
 
-const Details = (props) => {
+const Details = ({listings, updateEntry}) => {
     const { listingId } = useParams();
-    const { listings } = props;
-    const [listing, setListing] = useState(null);
     const history = useHistory();
+    const [listing, setListing] = useState(null);
+    const [isVisible, setIsVisible] = useState(false);
+    const handleModalClick = () => setIsVisible(!isVisible);
+    
 
     useEffect(() => {
-        const found = listings.find(company => {
-            return company.id === parseInt(listingId);
-        });
-        setListing(found);
+        if (!!listings) {
+            const found = listings.find(company => {
+                return company.id === parseInt(listingId);
+            });
+            setListing(found);
+        };
     },[listings, listingId]);
 
 
@@ -61,7 +65,12 @@ const Details = (props) => {
                     </Card>
                 </> : null }
             <div>
-                <button type="button" id="backButton" className="btn btn-primary" onClick={()=> {history.goBack()}}>Back</button>
+                <EditTargetModal 
+                    listing={listing}
+                    handleModalClick={handleModalClick}
+                    isVisible={isVisible}
+                    updateEntry={updateEntry}/>
+                <Button type="button" id="backButton" className="btn btn-secondary" onClick={()=> {history.goBack()}}>Back</Button>
             </div>
         </div>
     )

@@ -88,7 +88,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navigation/>
+        <h1>Target Tracker</h1>
         <Switch>
           <Route exact path='/'>
             <div className="content">
@@ -112,7 +112,9 @@ function App() {
           </Route>
           <Route path={'/:listingId'}>
             <Details 
-              listings={listings}/>
+              listings={listings}
+              updateEntry={_updateEntry}
+            />
           </Route>
           <Route path='*'>
             <Redirect to='/'/>
