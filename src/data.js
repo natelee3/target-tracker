@@ -6,7 +6,7 @@ export const data =
     {
         "id": 1,
         "status": "researching",
-        "key contacts" : [
+        "key_contacts" : [
             "", ""
         ],
         "company_info": {
@@ -31,7 +31,7 @@ export const data =
     {
         "id": 2,
         "status": "researching/pending/approved/declined",
-        "key contacts" : [
+        "key_contacts" : [
             "", ""
         ],
         "company_info": {

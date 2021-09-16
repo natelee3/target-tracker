@@ -19,3 +19,7 @@ h1 {
 .btn {
     margin-left: 5px;
 }
+
+#addButton {
+    margin-bottom: 1em;
+}

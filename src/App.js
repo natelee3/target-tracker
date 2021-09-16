@@ -6,23 +6,54 @@ import { useState, useEffect } from 'react';
 import {data} from './data';
 import './components/Dashboard.css';
 import SingleResult from './components/SingleResult';
+import Modal from "./components/addTargetModal";
 
 function App() {
   const [listings, setListings] = useState(null);
   const [fetchedData, setFetchedData] = useState(data);
+  const [nextId, setNextId] = useState(data.length + 1)
+  const [isVisible, setIsVisible] = useState(false);
+  const handleModalClick = () => setIsVisible(!isVisible);
 
   useEffect(() => {
     setListings(fetchedData);
-  })
+  },[fetchedData]);
 
   const _deleteEntry = (id) => {
-      console.log('deleteEntry is being run')
+      //Normally, this would POST to the backend, triggering the useEffect hook
       setFetchedData(fetchedData.filter(listing => listing.id !== id));
   };
 
-  const _addEntry = () => {
+  const _addEntry = (lookup_name, lookup_domain) => {
       //TODO: add new entry to listings by running a fetch and setting all the information into state.
+    console.log('Entry being added');
+    setFetchedData([...fetchedData, {
+      id: nextId,
+      status: 'researching',
+      key_contacts: '',
+      company_info: {
+        name: lookup_name,
+        url: lookup_domain,
+        logo: '',
+        sector: '',
+        description: '',
+        geo: {
+          city: '',
+          stateCode: '',
+          streetNumber: '',
+          streetName: ''
+        }
+      },
+      metrics: {
+        employees: '',
+        marketCap: '',
+        annualRevenue: ''
+      }
+    } ]);
+    console.log(fetchedData);
+    setNextId(nextId + 1);
   };
+
 
   const _updateEntry = (id, status, notes) => {
       //TODO: allow users to add notes, update status
@@ -36,16 +67,21 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <div className="content">
-              <h1>Target Tracker</h1>
               <div className="card-container">
-                  {fetchedData.map(entry => (
+                  { fetchedData ? 
+                  fetchedData.map(entry => (
                       <SingleResult
                           key={entry.id} 
                           listing={entry}
                           delete={_deleteEntry}
                       />
-                  ))}
+                  ))
+                : null}
               </div>
+              <Modal 
+                isVisible={isVisible}
+                handleModalClick={handleModalClick}
+                addEntry={_addEntry}/>
             </div>
           </Route>
           <Route path={'/:listingId'}>

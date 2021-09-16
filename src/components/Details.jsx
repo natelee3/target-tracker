@@ -45,7 +45,9 @@ const Details = (props) => {
                                             <b>Sector: </b>{listing.company_info.sector}
                                         </p>
                                         <p>
-                                            <b>HQ Location: </b>{`${listing.company_info.geo.city}, ${listing.company_info.geo.stateCode}`}
+                                            <b>HQ Location: </b>{ !!listing.company_info.geo.city ? 
+                                            `${listing.company_info.geo.city}, ${listing.company_info.geo.stateCode}`
+                                            : null}
                                         </p>
                                         <p>
                                             <b>Employees: </b>{listing.metrics.employees}
