@@ -6,7 +6,7 @@
         <li>View a list of targets (from mock data)</li>
         <li>Create a new target using <a href="https://bigpicture.io/docs/api/#introduction">Big Picture API</a> or enter manually</li>
         <li>Delete an existing target</li>
-        <li>Edit an existing target</li>
+        <li>Edit an existing target (not functional yet)</li>
     </ul>
     <ul>Written using Node.js and React with node modules:
         <li>react-bootstrap</li>
