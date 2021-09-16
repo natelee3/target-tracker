@@ -26,32 +26,56 @@ function App() {
   };
 
   const _addEntry = (lookup_name, lookup_domain, response) => {
+    //Looks for a response from BigPictureAPI
     if (!!response) {
-      const {id, url, key_contacts, metrics} = response;
-    };
-    setFetchedData([...fetchedData, {
-      id: nextId,
-      status: 'researching',
-      key_contacts: key_contacts || '',
-      company_info: {
-        name: response.name || lookup_name,
-        url: url || 'https://' + lookup_domain,
-        logo: logo || '',
-        sector: '',
-        description: '',
-        geo: {
-          city: '',
-          stateCode: '',
-          streetNumber: '',
-          streetName: ''
+      setFetchedData([...fetchedData, {
+        id: nextId,
+        status: 'researching',
+        key_contacts: '',
+        company_info: {
+          name: response.name,
+          url: response.url,
+          logo: response.logo,
+          sector: response.sector,
+          description: response.logo,
+          geo: {
+            city: response.geo.city,
+            stateCode: response.geo.stateCode,
+            streetNumber: response.geo.streetNumber,
+            streetName: response.geo.streetName
+          }
+        },
+        metrics: {
+          employees: response.metrics.employees,
+          marketCap: response.metrics.marketCap,
+          annualRevenue: response.metrics.annualRevenue
         }
-      },
-      metrics: {
-        employees: '',
-        marketCap: '',
-        annualRevenue: ''
-      }
-    } ]);
+      } ]);
+    } else {
+      setFetchedData([...fetchedData, {
+        id: nextId,
+        status: 'researching',
+        key_contacts: '',
+        company_info: {
+          name: lookup_name,
+          url: 'https://' + lookup_domain,
+          logo: '',
+          sector: '',
+          description: '',
+          geo: {
+            city: '',
+            stateCode: '',
+            streetNumber: '',
+            streetName: ''
+          }
+        },
+        metrics: {
+          employees: '',
+          marketCap: '',
+          annualRevenue: ''
+        }
+      } ]);
+    }
     console.log(fetchedData);
     setNextId(nextId + 1);
   };

@@ -1,7 +1,6 @@
 import { useParams, useHistory } from "react-router-dom";
 import { useState, useEffect } from 'react'; 
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import ReactImageFallback from 'react-image-fallback';
 import './Details.css';

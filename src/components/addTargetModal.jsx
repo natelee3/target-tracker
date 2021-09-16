@@ -9,7 +9,7 @@ const AddTargetModal = ({isVisible, handleModalClick, addEntry }) => {
 
     const fetchBigPicture = async (domain) => {
         const url = `https://company.bigpicture.io/v1/companies/find?domain=${domain}`;
-        const key = '183O0bwbmc1NUewM4O6aie:4kQGZqHMv8UTdZPCNd2qpe';
+        const key = window.env.API_KEY;
         const requestOptions = {
             headers: {'Authorization': key}    
         };
@@ -22,15 +22,13 @@ const AddTargetModal = ({isVisible, handleModalClick, addEntry }) => {
         e.preventDefault();
         const name = capitalize(companyName);
         //validate domain name
-        const response = await fetchBigPicture('target.com');
+        const response = await fetchBigPicture(companyDomain);
         if (!!response.geo) {
             addEntry(name, companyDomain, response)
         } else {
             addEntry(name, companyDomain, null);
         }
         handleModalClick();
-        
-      
     };
 
     const handleChange = (e) => {
