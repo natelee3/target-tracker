@@ -2,7 +2,7 @@
     <h1 style="text-align: center">Target Tracker</h1>
     <p>Created for Insiten Coding Challenge</p>
     <p>Active Development: 9/12-9/16</p>
-    <ul>
+    <ul>Features:
         <li>View a list of targets (from mock data)</li>
         <li>Create a new target using <a href="https://bigpicture.io/docs/api/#introduction">Big Picture API</a> or enter manually</li>
         <li>Delete an existing target</li>
