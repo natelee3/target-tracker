@@ -13,7 +13,6 @@
         <li>react-dotenv</li>
         <li>react-image-fallback</li>
         <li>react-router-dom</li>
-        <li></li>
     </ul>
     <p>With more time on the project, I planned to implement notes for each target that would store the user, note-content, and date-added. I would have also liked to add media queries to adjust the layout on smaller screen sizes and add user signup/login functionality. For another example of a basic CRUD app I've written, please see <a href="https://github.com/natelee3/grep-jobs">Grep Jobs</a>.</p>
 </html>
